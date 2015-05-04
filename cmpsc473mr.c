@@ -8,6 +8,9 @@ int memoryLocation[10];
 int N=0, B=0;
 
 
+word_list *head = NULL;
+
+
 //just a basic function to return the minimum of two numbers
 
 /*
@@ -52,7 +55,8 @@ int main(int args, char* argv[])
 	extern char *optarg;
 	extern int optind, optopt;
 
-	unsigned int size;
+	int file_;
+	double size;
 
 	word_list word;
 
@@ -88,10 +92,13 @@ int main(int args, char* argv[])
 	size = ftell(file);
 	fseek(file, 0, SEEK_SET);
 
-	printf("Size of the file is: %d\n", size);
+	file_ = fileno(file);
 
+	printf("Size of the file is: %f\n", size);
 
+	char *buffer = mmap( 0, (size + 10), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, file_, 0 );
 
+	printf("%s\n", buffer);
 
 
 	return 0;
