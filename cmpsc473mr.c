@@ -96,10 +96,25 @@ int main(int args, char* argv[])
 
 	printf("Size of the file is: %f\n", size);
 
-	char *buffer = mmap( 0, (size + 10), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, file_, 0 );
+	char *buffer = mmap( 0, size , PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, file_, 0 );
 
-	printf("%s\n", buffer);
+	i=0;
+	char *chunk;
+	int min_chunk_size = size / N;
+	int chunkSize = min_chunk_size;
+	
+	printf( "size: %d\n", size/N);
 
+	while ( chunkSize < size && buffer[min_chunk_size] != ' ' && buffer[min_chunk_size] != '\n' ){
+		i++;
+		min_chunk_size++;
+		chunkSize++;
+	}
+	
+
+	/*for (int i = 0; i < N; i++){
+		for ( int j =0; j < )
+	}*/
 
 	return 0;
 }
