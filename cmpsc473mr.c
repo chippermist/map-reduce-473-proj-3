@@ -100,21 +100,34 @@ int main(int args, char* argv[])
 
 	i=0;
 	char *chunk;
+
 	int min_chunk_size = size / N;
-	int chunkSize = min_chunk_size;
-	
-	printf( "size: %d\n", size/N);
+	int where_we_are = 0;
 
-	while ( chunkSize < size && buffer[min_chunk_size] != ' ' && buffer[min_chunk_size] != '\n' ){
-		i++;
-		min_chunk_size++;
-		chunkSize++;
+	for (int i = 0; i < N && where_we_are < size; i++)
+	{
+
+		int chunkSize = min_chunk_size;
+		where_we_are = min_chunk_size;
+		
+		printf( "min chunk size: %d\n", min_chunk_size);
+
+		while (chunkSize < size && buffer[chunkSize] != ' ' && buffer[chunkSize] != '\n' && buffer[chunkSize] != '\r')
+		{
+			//printf("%c\n", buffer[where_we_are]);
+			chunkSize++;
+		}
+
+		if(chunkSize <= size)
+		{
+			where_we_are = chunkSize;
+		}
+
+		
+
+		printf( "where_we_are: %d, chunkSize: %d\n", where_we_are, chunkSize);
+				
 	}
-	
-
-	/*for (int i = 0; i < N; i++){
-		for ( int j =0; j < )
-	}*/
 
 	return 0;
 }
