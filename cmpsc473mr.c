@@ -103,6 +103,7 @@ int main(int args, char* argv[])
 
 	int min_chunk_size = size / N;
 	int where_we_are = 0;
+	int 
 
 	for (int i = 0; i < N && where_we_are < size; i++)
 	{
@@ -131,3 +132,20 @@ int main(int args, char* argv[])
 
 	return 0;
 }
+
+i = 0;
+	int MIN_CHUNK_SIZE = length / THREADS;
+	int index = 0; // thread number
+	while (i < length && index < THREADS) {
+		char *chunk;
+		int curChunkSize = MIN_CHUNK_SIZE;
+		int start = i;
+		int end = min(start + MIN_CHUNK_SIZE, length);
+
+		// get chunksize by iterating to end of word from MIN_CHUNK_SIZE
+		while (end != length && buf[end] != ' ' && buf[end] != '\0' && buf[end] != '\n') {
+			end++;
+			curChunkSize++;
+		}
+		printf("%d\n",curChunkSize );
+		i = end;
